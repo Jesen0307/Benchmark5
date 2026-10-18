@@ -56,9 +56,9 @@ public class BenchmarkTest00196 extends HttpServlet {
         else bar = "This should never happen";
 
         try {
-            String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD='" + bar + "'";
+            String sql = "SELECT * from USERS where USERNAME='foo' and PASSWORD=?";
 
-            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.execute(sql);
+            org.owasp.benchmark.helpers.DatabaseHelper.JDBCtemplate.queryForList(sql, bar);
             response.getWriter()
                     .println(
                             "No results can be displayed for query: "
